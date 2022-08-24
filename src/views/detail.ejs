@@ -27,16 +27,21 @@
 						<h2 class="product-detail-title"><%= product.name %></h2>
 						
 							<p class="product-detail-price small">
-								<span>$<%= product.price %></span>
-								/
-								<b><%= product.discount %>% OFF</b>
+								<% if (product.discount > 0) { %>
+									<span>$<%= product.price %></span>
+									<b><%= product.discount %>% OFF</b>
+								<% } %>
+								
 							</p>
+							<% if (product.discount > 0) { %>
 							<p class="product-detail-price">
-								$FINAL PRICE
+								$<%= (product.price) - (product.price * product.discount / 100) %>
 							</p>
+							<% }else{ %>
 							<p class="product-detail-price">
-								$PRICE
+								$<%= product.price %>
 							</p>
+							<% } %>
 
 						<ul class="actions-list">
 							<li>
