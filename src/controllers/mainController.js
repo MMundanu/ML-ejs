@@ -20,9 +20,9 @@ const controller = {
 	},
 	search: (req, res) => {
 		const products = loadProducts();
-        const result = products.filter(product => product.name.toLowerCase().includes(req.query.keywords.toLowerCase()))
-        return res.render('products', {
-            products : result,
+        const results = products.filter(product => product.name.toLowerCase().includes(req.query.keywords.toLowerCase()))
+        return res.render('results', {
+            results,
             keywords : req.query.keywords
         })
 	},
