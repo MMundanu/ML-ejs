@@ -68,10 +68,11 @@ const controller = {
 	update: (req, res) => {
 		const products = loadProducts();
         const {id} = req.params;
-        const {name,price,discount,category,description, Image} = req.body;
+
+        const {name,price,discount,category,description, image} = req.body;
 
 		const productModify = products.map(product => {
-			if (product === +id){
+			if (product.id === +id){
 				return {
 					id : product.id,
 					name : name.trim(),
@@ -79,7 +80,8 @@ const controller = {
 					discount : +discount,
 					category,
 					description : description.trim(),
-					Image : product.Image
+					image : product.image
+					
 				}
 			}
 			return product
@@ -90,7 +92,6 @@ const controller = {
 
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
-		
 		const products = loadProducts();
 
         const productsModify = products.filter(product => product.id !== +req.params.id )
